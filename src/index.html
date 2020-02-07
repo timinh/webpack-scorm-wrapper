@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script language="javascript">
+    document.addEventListener('DOMContentLoaded', function(evt){
+        document.getElementById('scorm-container').src="<%= htmlWebpackPlugin.options.frameContent %>";
+    });
+  </script>
+  <style>
+    
+    .iframe-container iframe {
+      border: 0;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  </style>
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+  <div class="iframe-container">
+    <iframe id="scorm-container"></iframe>
+  </div>
+</body>
+</html>
