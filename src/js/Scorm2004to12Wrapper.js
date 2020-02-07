@@ -7,8 +7,6 @@ export default class Scorm2004to12Wrapper {
     this.findAPITries = 0;
     this.noAPIFound = false;
     this.maxTries = 500;
-    this.timeStart = null;
-    this.terminated = false;
   }
 
   Initialize () {
@@ -18,8 +16,6 @@ export default class Scorm2004to12Wrapper {
       window.addEventListener('beforeunload', (event) => {
         this.Terminate();
       });
-      let dateStart = new Date();
-      this.timeStart = dateStart.getTime();
       return api.LMSInitialize("");
     }
     return false;
@@ -27,17 +23,8 @@ export default class Scorm2004to12Wrapper {
 
   Terminate () {
     this.log('Terminate');
-    if(this.terminated) {
-      return false;
-    }
     let api = this.getAPIHandle();
     if(!this.noAPIFound){
-      let dateEnd = new Date();
-      let timeEnd = dateEnd.getTime();
-      let tps_passe = (Math.floor(timeEnd - this.timeStart)) / 1000;
-      this.log(this.formatTime(tps_passe));
-      api.LMSSetValue('cmi.core.session_time', this.formatTime(tps_passe));
-      this.terminated = true;
       return api.LMSFinish("");
     }
     return false;
@@ -55,6 +42,10 @@ export default class Scorm2004to12Wrapper {
           }
           return api.LMSGetValue('cmi.core.lesson_location');
           break;
+        case 'cmi.progress_measure':
+          let cpm = localStorage.getItem('cmi.progress_measure');
+          return (cpm != null ) ? cpm : '';
+          break;
         case 'cmi.completion_status'://TODO
           status = api.LMSGetValue('cmi.core.lesson_status');
           if (status == 'passed'|| status == 'failed') {
@@ -70,9 +61,6 @@ export default class Scorm2004to12Wrapper {
           } else {
             return 'not attempted';
           }
-          break;
-        case 'cmi.progress_measure':
-          return ''; //TODO
           break;
         case 'cmi.learner_id':
           return api.LMSGetValue('cmi.core.student_id');
@@ -130,10 +118,12 @@ export default class Scorm2004to12Wrapper {
         case 'cmi.location':
           return api.LMSSetValue('cmi.core.lesson_location', val);
           break;
-        case 'cmi.progress_measure':
-          return '';
-          break;
         case 'cmi.session_time':
+          return api.LMSSetValue('cmi.core.session_time', this.formatTime(val));
+          break;
+        case 'cmi.progress_measure':
+          localStorage.setItem('cmi.progress_measure', val);
+          return '';
           break;
         case 'cmi.completion_status':
         case 'cmi.success_status':
@@ -199,49 +189,8 @@ export default class Scorm2004to12Wrapper {
   }
 
   formatTime (ts) {
-    let sec = (ts % 60);
-    ts -= sec;
-    let tmp = (ts % 3600);  //# of seconds in the total # of minutes
-    ts -= tmp;              //# of seconds in the total # of hours
-  
-    // convert seconds to conform to CMITimespan type (e.g. SS.00)
-    sec = Math.round(sec*100)/100;
-    
-    let strSec = new String(sec);
-    let strWholeSec = strSec;
-    let strFractionSec = "";
-    if (strSec.indexOf(".") != -1)
-    {
-      strWholeSec =  strSec.substring(0, strSec.indexOf("."));
-      strFractionSec = strSec.substring(strSec.indexOf(".")+1, strSec.length);
-    }
-    
-    if (strWholeSec.length < 2)
-    {
-      strWholeSec = "0" + strWholeSec;
-    }
-    strSec = strWholeSec;
-    
-    if (strFractionSec.length)
-    {
-      strSec = strSec+ "." + strFractionSec;
-    }
-  
-    if ((ts % 3600) != 0 )
-      hour = 0;
-    else hour = (ts / 3600);
-    if ( (tmp % 60) != 0 )
-      min = 0;
-    else min = (tmp / 60);
-  
-    if ((new String(hour)).length < 2)
-      hour = "0"+hour;
-    if ((new String(min)).length < 2)
-      min = "0"+min;
-  
-    let rtnVal = hour+":"+min+":"+strSec;
-  
-    return rtnVal;
+    let formattedTime = ts.replace(/PT(\d+)H(\d+)M(\d+)S/, "$1:$2:$3");
+    return formattedTime;
   }
 
   findAPI ( win ) {

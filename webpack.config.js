@@ -1,25 +1,56 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const imsmanifest = require('./imsmanifest.json');
+const uuidv4 = require('uuid/v4');
+const imsmanifestdata = require('./imsmanifest.json');
 
 const myPlugins = [
   new CleanWebpackPlugin({
-    cleanOnceBeforeBuildPatterns: ['**/*', '!content*', '!content/**']
-  }),
-  new HtmlWebpackPlugin({
-    template: './src/fin.html',
-    filename: 'fin.html'
+    cleanOnceBeforeBuildPatterns: ['**/*', '!content*', '!content/**', '!imsmanifest.xml']
   })
 ];
-imsmanifest.organization.scos.map( sco => {
+const orgId = uuidv4();
+
+let imsmanifestoutput = `
+  <organizations default="${orgId}">
+  <organization identifier="ORG-A009AED8F76396B4D7A894EDC95D85D2" structure="hierarchical">
+      <title>${imsmanifestdata.organization.title}</title>
+`;
+let resources = '<resources>';
+imsmanifestdata.organization.scos.map( sco => {
   myPlugins.push(new HtmlWebpackPlugin({
     title: sco.title,
     template: './src/index.html',
     filename: sco.src,
     frameContent: sco.content
   }) );
+  let itemId = uuidv4();
+  resources += `
+    <resource identifier="RES-${itemId}" type="webcontent" href="${sco.src}" adlcp:scormtype="sco">
+      <file href="${sco.src}" />
+    </resource>
+  `;
+  imsmanifestoutput += `
+  <item identifier="ITEM-${itemId}" isvisible="true" identifierref="RES-${itemId}">
+    <title>${sco.title}</title>
+  </item>
+  `
 });
+resources += '</resources>';
+
+imsmanifestoutput += `
+  </organization>
+</organizations>
+`;
+imsmanifestoutput += resources;
+imsmanifestoutput += `
+</manifest>`;
+myPlugins.push(new HtmlWebpackPlugin({
+  template: './src/imsmanifest.xml',
+  filename: 'imsmanifest.xml',
+  imsContent: imsmanifestoutput,
+  inject: false
+}));
 
 module.exports = {
   entry: './src/js/main.js',
