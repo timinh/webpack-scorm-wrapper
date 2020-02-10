@@ -47,7 +47,8 @@ Un fois cette structure créée dans le imsmanifest.json (et le fichiers corresp
 npm run build
 ~~~
 Puis d'envoyer le zip généré au LMS.
-**Attention : Il faut bien zipper le contenu du dossier et non le dossier (le imsmanifest.xml doit être à la racine du fichier zip**
+
+**Attention : Bien vérifier que le fichier imsmanifest.xml doit être à la racine du fichier zip, car c'est lui qui va être lu par le LMS pour générer la structure du module.**
 
 
 ## Structure des dossier
