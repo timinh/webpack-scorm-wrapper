@@ -13,7 +13,7 @@ const orgId = uuidv4();
 
 let imsmanifestoutput = `
   <organizations default="${orgId}">
-  <organization identifier="ORG-A009AED8F76396B4D7A894EDC95D85D2" structure="hierarchical">
+  <organization identifier="ORG-${orgId}" structure="hierarchical">
       <title>${imsmanifestdata.organization.title}</title>
 `;
 let resources = '<resources>';
