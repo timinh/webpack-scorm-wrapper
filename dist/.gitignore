@@ -1,4 +1,4 @@
 *
-./content/*
+content/*
 !.gitignore
-!./content/
+!content/
