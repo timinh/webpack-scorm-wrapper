@@ -48,7 +48,7 @@ npm run build
 ~~~
 Puis d'envoyer le zip généré au LMS.
 
-**Attention : Bien vérifier que le fichier imsmanifest.xml doit être à la racine du fichier zip, car c'est lui qui va être lu par le LMS pour générer la structure du module.**
+**Attention : Bien vérifier que le fichier imsmanifest.xml soit à la racine du fichier zip, car c'est lui qui va être lu par le LMS pour générer la structure du module.**
 
 
 ## Structure des dossier
