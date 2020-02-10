@@ -46,7 +46,7 @@ Un fois cette structure créée dans le imsmanifest.json (et le fichiers corresp
 ~~~
 npm run build
 ~~~
-Puis de zipper le contenu du dossier dist et de l'envoyer au LMS.
+Puis d'envoyer le zip généré au LMS.
 **Attention : Il faut bien zipper le contenu du dossier et non le dossier (le imsmanifest.xml doit être à la racine du fichier zip**
 
 
