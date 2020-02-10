@@ -6,7 +6,7 @@ const imsmanifestdata = require('./imsmanifest.json');
 
 const myPlugins = [
   new CleanWebpackPlugin({
-    cleanOnceBeforeBuildPatterns: ['**/*', '!content*', '!content/**', '!imsmanifest.xml']
+    cleanOnceBeforeBuildPatterns: ['**/*', '!.gitignore', '!content*', '!content/**', '!imsmanifest.xml']
   })
 ];
 const orgId = uuidv4();
