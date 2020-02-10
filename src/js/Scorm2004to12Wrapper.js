@@ -1,12 +1,10 @@
 export default class Scorm2004to12Wrapper {
 
   constructor(debug=false) {
-    this.codeName = 'ScormProxy';
     this.debug = debug;
     this.apiHandle = null;
     this.findAPITries = 0;
     this.noAPIFound = false;
-    this.maxTries = 500;
   }
 
   Initialize () {
