@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --open",
-    "build": "webpack && cd dist/ && zip -r test.zip *"
+    "build": "FILENAME=$(basename $(cd ../ && pwd)).zip && webpack && cd dist/ && zip -r ${FILENAME} *"
   },
   "keywords": [],
   "author": "",
