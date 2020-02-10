@@ -41,12 +41,11 @@ export default class Scorm2004to12Wrapper {
           return api.LMSGetValue('cmi.core.lesson_location');
           break;
         case 'cmi.progress_measure':
-          let cpm = localStorage.getItem('cmi.progress_measure');
-          return (cpm != null ) ? cpm : '';
+          return '';
           break;
         case 'cmi.completion_status'://TODO
           status = api.LMSGetValue('cmi.core.lesson_status');
-          if (status == 'passed'|| status == 'failed') {
+          if (status == 'passed'|| status == 'failed' || status == 'completed') {
             return 'completed';
           } else {
             return 'incomplete';
@@ -120,7 +119,6 @@ export default class Scorm2004to12Wrapper {
           return api.LMSSetValue('cmi.core.session_time', this.formatTime(val));
           break;
         case 'cmi.progress_measure':
-          localStorage.setItem('cmi.progress_measure', val);
           return '';
           break;
         case 'cmi.completion_status':
