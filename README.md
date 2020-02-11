@@ -44,9 +44,15 @@ Ces fichiers vont embarquer un mini RTE SCORM et charger dans une iframe le modu
 
 Un fois cette structure créée dans le imsmanifest.json (et le fichiers correspondants placés dans le répertoire 'content', il suffit de taper la commande suivante pour générer le imsmanifest.xml :
 ~~~
-npm run build
+npm run package
 ~~~
 Puis d'envoyer le zip généré au LMS.
+
+Sous windows, si la commande pour zipper n'est pas disponible, il faudra utiliser la commande suivante : 
+~~~
+npm run build
+~~~
+puis zipper le contenu du dossier 'dist'
 
 **Attention : Bien vérifier que le fichier imsmanifest.xml soit à la racine du fichier zip, car c'est lui qui va être lu par le LMS pour générer la structure du module.**
 

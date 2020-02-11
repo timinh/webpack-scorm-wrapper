@@ -1,11 +1,12 @@
 {
-  "name": "ScormProxy",
+  "name": "Scorm2004to12Wrapper",
   "version": "1.0.0",
   "description": "",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --open",
-    "build": "FILENAME=$(basename $(cd ../ && pwd)).zip && webpack && cd dist/ && zip -r ${FILENAME} *"
+    "build": "webpack",
+    "package": "FILENAME=$(basename $(cd ../ && pwd)).zip && webpack && cd dist/ && zip -r ${FILENAME} *"
   },
   "keywords": [],
   "author": "",
