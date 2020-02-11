@@ -42,7 +42,7 @@ Ce qui génèrera dans le LMS un module nommé 'Séquence de test' composé de 3
 Dans le dossier 'dist', 3 fichiers (video.html, formation.html et evaluation.html) seront générés.
 Ces fichiers vont embarquer un mini RTE SCORM et charger dans une iframe le module original qui doit être adpaté.
 
-Un fois cette structure créée dans le imsmanifest.json (et le fichiers correspondants placés dans le répertoire 'content', il suffit de taper la commande suivante pour générer le imsmanifest.xml :
+Un fois cette structure créée dans le imsmanifest.json (et le fichiers correspondants placés dans le répertoire 'content', il suffit de taper la commande suivante pour générer le module scorm zippé :
 ~~~
 npm run package
 ~~~
@@ -52,7 +52,7 @@ Sous windows, si la commande pour zipper n'est pas disponible, il faudra utilise
 ~~~
 npm run build
 ~~~
-puis zipper le contenu du dossier 'dist'
+puis zipper le contenu du dossier 'dist' (pas de dossier lui-même)
 
 **Attention : Bien vérifier que le fichier imsmanifest.xml soit à la racine du fichier zip, car c'est lui qui va être lu par le LMS pour générer la structure du module.**
 
