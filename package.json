@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --open",
     "build": "webpack",
-    "package": "FILENAME=$(basename $(cd ../ && pwd)).zip && webpack && cd dist/ && zip -r ${FILENAME} *"
+    "package": "FILENAME=$(basename $(pwd)).zip && webpack && cd dist/ && zip -r ${FILENAME} *"
   },
   "keywords": [],
   "author": "",
