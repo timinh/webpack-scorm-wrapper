@@ -111,6 +111,7 @@ export default class Scorm2004to12Wrapper {
           if(status == 'completed' || status == 'passed' ) {
             return api.LMSSetValue('cmi.suspend_data', '');
           }
+          return api.LMSSetValue('cmi.suspend_data', val);
           break;
         case 'cmi.location':
           return api.LMSSetValue('cmi.core.lesson_location', val);
@@ -128,6 +129,7 @@ export default class Scorm2004to12Wrapper {
             api.LMSSetValue('cmi.core.lesson_location', '-');
             api.LMSSetValue('cmi.core.exit', "");
           }
+          val = (val == 'unknown') ? 'incomplete' : val;
           return api.LMSSetValue('cmi.core.lesson_status', val);
           break;
         default: 
