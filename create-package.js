@@ -6,6 +6,13 @@ var organization = {
   title: '',
   scos: []
 }
+try {
+var readFile = require('./imsmanifest.json')
+}catch(e){}
+
+if(readFile) {
+  organization = readFile.organization
+}
 
 var questionModule = {
   type: 'input',
@@ -17,7 +24,7 @@ var questionsSequences = [
   {
     type: 'input',
     name: 'sequenceTitle',
-    message: 'Entrez le titre le la séquence : '
+    message: 'Entrez le titre de la séquence : '
   },
   {
     type: 'input',
@@ -35,17 +42,36 @@ var questionsSequences = [
     message: 'Souhaitez-vous ajouter une autre séquence(ENTREE pour OUI)?',
     default: true,
   },
-];
+]
+
+var questionResume = {
+  type: 'confirm',
+  name: 'resumeManifest',
+  message: 'Un fichier imsmanifest.json existe déja, souhaitez-vous ajouter des séquences(ENTREE pour OUI) ?',
+  default: true,
+}
 
 function startPackaging() {
-  inquirer.prompt(questionModule).then( (answer) => {
-    if(answer.moduleName != '') {
-      organization.title = answer.moduleName
-      addSequence()
-    } else {
-      startPackaging()
-    }
-  })
+  if(organization.title != '') {
+    inquirer.prompt(questionResume).then( (answer) => {
+      if(answer.resumeManifest) {
+        addSequence()
+      } else {
+        organization.title = ''
+        organization.scos = []
+        startPackaging()
+      }
+    })
+  } else {
+    inquirer.prompt(questionModule).then( (answer) => {
+      if(answer.moduleName != '') {
+        organization.title = answer.moduleName
+        addSequence()
+      } else {
+        startPackaging()
+      }
+    })
+  }
 }
 
 function addSequence() {
