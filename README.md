@@ -12,7 +12,19 @@ cd nom_du_module
 npm install
 
 ~~~
-Placer ensuite le contenu original du module dans le dossier 'content', puis ouvrir le fichier 'imsmanifest.json' et l'adapter afin de créer la structure souhaitée pour votre nouveau module. Le fichier se compose comme suit : 
+Placer ensuite le contenu original du module dans le dossier 'content'.
+
+Afin de générer correctement le package scorm et le fichier descriptif (imsmanifest.xml), nous allons créer un fichier imsmanifest.json pour créer la structure souhaitée pour notre nouveau module.
+Le fichier 'imsmanifest.json' peut être généré automatiquement à l'aide de la commande :
+~~~
+npm run create
+~~~
+L'utilitaire vous posera les questions qui lui permettront de générer automatiquement le fichier.
+Si le imsmanifest.json existe déja, Vous pourrez y ajouter des séquences.
+
+Il est également possible de modifer directement le manifest dans un éditeur de texte.
+
+Le fichier se compose comme suit : 
 ~~~
 {
   "organization": {
