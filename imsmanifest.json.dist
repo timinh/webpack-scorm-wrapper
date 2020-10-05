@@ -1,0 +1,22 @@
+{
+  "organization": {
+    "title": "Sequence de test",
+    "scos": [
+      {
+        "title": "Vidéo",
+        "src": "video.html",
+        "content": "./content/VIDEOS/video_m1_itw.html"
+      },
+      {
+        "title": "Formation",
+        "src": "formation.html",
+        "content": "./content/FORMATION/module1/m1-u1/module1/index.html"
+      },
+      {
+        "title": "Evaluation",
+        "src": "evaluation.html",
+        "content": "./content/EVALUATIONS/module1/m1-u1/index.html"
+      }
+    ]
+  }
+}

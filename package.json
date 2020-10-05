@@ -4,12 +4,13 @@
   "description": "",
   "private": true,
   "scripts": {
+    "create" : "node create-package.js",
     "dev": "webpack-dev-server --open",
     "build": "webpack",
     "package": "FILENAME=$(basename $(pwd)).zip && webpack && cd dist/ && zip -r ${FILENAME} *"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["scorm 1.2", "scorm 2004", "imsmanifest", "packaging"],
+  "author": "Gilles Robin <gilles.robin@uca.fr> (http://www.uca.fr)",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -17,6 +18,7 @@
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "inquirer": "^7.3.3",
     "uuid": "^3.4.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
