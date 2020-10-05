@@ -76,11 +76,13 @@ function startPackaging() {
 
 function addSequence() {
   inquirer.prompt(questionsSequences).then((answers) => {
-    organization.scos.push({
-      title: answers.sequenceTitle,
-      src: answers.sequenceFile,
-      content: answers.sequenceExistingFile
-    })
+    if( (answers.sequenceTitle!='')&&(answers.sequenceFile!='')&&(answers.sequenceExistingFile!='') ) {
+      organization.scos.push({
+        title: answers.sequenceTitle,
+        src: answers.sequenceFile,
+        content: answers.sequenceExistingFile
+      })
+    }
     if (answers.askAgain) {
       addSequence();
     } else {
