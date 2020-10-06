@@ -28,7 +28,7 @@ Le fichier se compose comme suit :
 ~~~
 {
   "organization": {
-    "title": "Sequence de test",
+    "title": "Module de test",
     "scos": [
       {
         "title": "Vidéo",
@@ -49,10 +49,10 @@ Le fichier se compose comme suit :
   }
 }
 ~~~
-Ce qui génèrera dans le LMS un module nommé 'Séquence de test' composé de 3 chapitres (SCOs), 'Vidéo', 'Formation' et 'Evaluation'.
+Ce qui génèrera dans le LMS un module nommé 'Module de test' composé de 3 séquences (SCOs), 'Vidéo', 'Formation' et 'Evaluation'.
 
 Dans le dossier 'dist', 3 fichiers (video.html, formation.html et evaluation.html) seront générés.
-Ces fichiers vont embarquer un mini RTE SCORM et charger dans une iframe le module original qui doit être adpaté.
+Ces fichiers vont embarquer un mini RTE SCORM et charger dans une iframe les SCOs originaux qui doivent être adpatés.
 
 Un fois cette structure créée dans le imsmanifest.json (et le fichiers correspondants placés dans le répertoire 'content', il suffit de taper la commande suivante pour générer le module scorm zippé :
 ~~~
