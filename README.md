@@ -68,6 +68,11 @@ puis zipper le contenu du dossier 'dist' (pas de dossier lui-même)
 
 **Attention : Bien vérifier que le fichier imsmanifest.xml soit à la racine du fichier zip, car c'est lui qui va être lu par le LMS pour générer la structure du module.**
 
+En phase de développement, il est possible de tester directement les modules grace à l'intégration de la librairie https://github.com/skfriese/simple-scorm-api, en utilisant la commande : 
+
+~~~
+npm run dev
+~~~
 
 ## Structure des dossier
 ~~~
@@ -77,6 +82,8 @@ puis zipper le contenu du dossier 'dist' (pas de dossier lui-même)
     - js
         - main.js
         - Scorm2004to12Wrapper.js
+    - rte
+        - scorm12rte.html
     - index.html
  - imsmanifest.json
  - package.json
