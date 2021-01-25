@@ -74,6 +74,8 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: './dist',
+    writeToDisk:true,
+    contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, 'src/rte/')],
+    openPage: 'scorm12rte.html'
   },
 };
