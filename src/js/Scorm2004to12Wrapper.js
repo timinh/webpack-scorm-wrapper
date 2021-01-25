@@ -5,6 +5,7 @@ export default class Scorm2004to12Wrapper {
     this.apiHandle = null;
     this.findAPITries = 0;
     this.noAPIFound = false;
+    this.terminated = false;
   }
 
   Initialize () {
@@ -23,7 +24,10 @@ export default class Scorm2004to12Wrapper {
     this.log('Terminate');
     let api = this.getAPIHandle();
     if(!this.noAPIFound){
-      return api.LMSFinish("");
+      if(!this.terminated) {
+        this.terminated = true;
+        return api.LMSFinish("");
+      }
     }
     return false;
   }
