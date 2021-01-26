@@ -12,7 +12,7 @@ cd nom_du_module
 npm install
 
 ~~~
-Placer ensuite le contenu original du module dans le dossier 'content'.
+Placer ensuite le contenu original du module dans le dossier 'dist/content'.
 
 Afin de générer correctement le package scorm et le fichier descriptif (imsmanifest.xml), nous allons créer un fichier imsmanifest.json pour créer la structure souhaitée pour notre nouveau module.
 Le fichier 'imsmanifest.json' peut être généré automatiquement à l'aide de la commande :
